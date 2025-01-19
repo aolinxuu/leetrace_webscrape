@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leetracer Dupe</title>
+    <style>
+      body {
+        padding: 30px 50px;
+      }
+      h1 {
+        text-align: center;
+        font-size: 60px;
+      }
+      .dropdown-check-list {
+        display: inline-block;
+        position: relative;
+        /* width: 100%; */
+      }
+      .dropdown-check-list .anchor {
+        position: relative;
+        cursor: pointer;
+        display: inline-block;
+        padding: 5px 50px 5px 10px;
+        border: 1px solid #ccc;
+        /* border-radius: 5px; */
+      }
+      .dropdown-check-list .anchor:after {
+        position: absolute;
+        content: "";
+        border-left: 2px solid black;
+        border-top: 2px solid black;
+        padding: 5px;
+        right: 10px;
+        top: 20%;
+        transform: rotate(-135deg);
+      }
+      .dropdown-check-list .items {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        border: 1px solid #aaa;
+        list-style-type: none;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        padding: 1em;
+        min-width: 300px;
+        width: 770px;
+        column-count: 4;
+      }
+      form {
+        margin-bottom: 30px;
+        margin-top: 40px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 7px;
+        text-align: left;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var dropdowns = document.querySelectorAll(".dropdown-check-list .anchor");
+        dropdowns.forEach(function (anchor) {
+          anchor.addEventListener("click", function () {
+            var items = this.nextElementSibling;
+            if (items.style.display === "block") {
+              items.style.display = "none";
+            } else {
+              items.style.display = "block";
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Leetracer Dupe</h1>
+    <form action="/" method="post">
+      <div class="dropdown-check-list" tabindex="100">
+        <span class="anchor">Select Topics</span>
+        <ul class="items">
+          {% for topic in topics %}
+          <li><input type="checkbox" name="topic" value="{{ topic }}" /> {{ topic }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="dropdown-check-list" tabindex="100">
+        <span class="anchor">Select Companies</span>
+        <ul class="items">
+          {% for company in companies %}
+          <li><input type="checkbox" name="company" value="{{ company }}" /> {{ company }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <button type="submit">Filter</button>
+    </form>
+    <div>{{ problems|safe }}</div>
+  </body>
+</html>
