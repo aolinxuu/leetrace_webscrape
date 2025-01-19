@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import pandas as pd
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='.')
 df = pd.read_csv('clean_res.csv')
 
 @app.route('/', methods=['GET', 'POST'])
