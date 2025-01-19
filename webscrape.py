@@ -1,6 +1,5 @@
 import csv
 from selenium import webdriver
-from selenium.webdriver.support import expected_conditions as EC
 from util import set_questions, set_difficulty, set_topics, set_companies, clear_topics, clear_companies, get_results
 
 topics = [
